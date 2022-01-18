@@ -2,10 +2,11 @@
 import { initializeApp } from "firebase/app";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
+import { getAuth } from "firebase/auth";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-	apiKey: process.env.REACT_APP_KEY,
+	apiKey: process.env.REACT_APP_API_KEY,
 	authDomain: process.env.REACT_APP_AUTH_DOMAIN,
 	projectId: process.env.REACT_APP_PROJECT_ID,
 	storageBucket: process.env.REACT_APP_STORAGE_BUCKET,
@@ -16,4 +17,10 @@ const firebaseConfig = {
 // Initialize Firebase
 // const app = initializeApp(firebaseConfig);
 
-export default initializeApp(firebaseConfig);
+// 파베 초기화를 위한 부분이므로 다른 파일에서 참조할 필요 x
+// fbase.js 파일 내에서 실행하도록 코드 수정
+const firebaseApp = initializeApp(firebaseConfig);
+
+// firebase.auth()는 로그인을 위해 사용하므로 다른 파일이 참조함
+// 파베 관련 모듈을 더 export 할 수도 있으므로 named export를 적용함
+export const authService = getAuth(firebaseApp);
