@@ -1,10 +1,7 @@
-// Import the functions you need from the SDKs you need
+// Firebase version 9
 import { initializeApp } from "firebase/app";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
 import { getAuth } from "firebase/auth";
 
-// Your web app's Firebase configuration
 const firebaseConfig = {
 	apiKey: process.env.REACT_APP_API_KEY,
 	authDomain: process.env.REACT_APP_AUTH_DOMAIN,
@@ -13,9 +10,6 @@ const firebaseConfig = {
 	messagingSenderId: process.env.REACT_APP_MESSAGING_SENDER_ID,
 	appId: process.env.REACT_APP_APP_ID,
 };
-
-// Initialize Firebase
-// const app = initializeApp(firebaseConfig);
 
 // 파베 초기화를 위한 부분이므로 다른 파일에서 참조할 필요 x
 // fbase.js 파일 내에서 실행하도록 코드 수정
