@@ -3,16 +3,24 @@ import AppRouter from "components/Router";
 import { authService } from "fbase";
 
 function App() {
-	const [isLoggedIn, setIsLoggedIn] = useState(authService.currentUser);
+	const [init, setInit] = useState(false);
+	const [isLoggedIn, setIsLoggedIn] = useState(false);
 	// console.log(authService.currentUser);
 	// setInterval(() => console.log(authService.currentUser), 2000);
 	useEffect(() => {
-		authService.onAuthStateChanged((user) => console.log(user));
+		authService.onAuthStateChanged((user) => {
+			if (user) {
+				setIsLoggedIn(user);
+			} else {
+				setIsLoggednIn(false);
+			}
+			setInit(true);
+		});
 	}, []);
 
 	return (
 		<>
-			<AppRouter isLoggedIn={isLoggedIn} />
+			{init ? <AppRouter isLoggedIn={isLoggedIn} /> : "initializing..."}
 			<footer>&copy; {new Date().getFullYear()} Nyaitter</footer>
 		</>
 	);
